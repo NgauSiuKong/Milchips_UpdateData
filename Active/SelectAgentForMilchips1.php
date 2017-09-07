@@ -9,31 +9,8 @@
     $MDatabaseOperate = new DatabaseOperate(__MYSQL_HOST__,__MYSQL_USER__,__MYSQL_PASS__,__MYSQL_DBNAME__);
     $COpArr = new OpArr;
     $MMilchipsData = new MilchipsData;
-    /*
     $sql = "select product_model,product_id from t_product where product_id>856230 group by product_model order by product_id limit 50000,10000";
     $arr = $MDatabaseOperate->getAllArray($sql);
-    */
-    $MDB = DB::getIntance();
-    $tmp_prdct_sql = "select product_id from tmp_product limit 1";
-    $tmp_prdct = $MDB->getAll($tmp_prdct_sql);
-    echo "<pre>";
-        print_r($tmp_prdct);
-    echo "</pre>";
-    $sql = "";
-    $product_info = array();
-    foreach($tmp_prdct as $key => $val){ 
-        //查询详细信息
-        $product_info = $MDB->getAll($MMilchipsData->selProductSql($val['product_id']));
-        //查询价格
-        $product_price = $MDB->getAll($MMilchipsData->selPriceSql($val['product_id']));
-        echo "<pre>";
-            print_r($product_info);
-        echo "</pre>";
-        echo "<pre>";
-            print_r($product_price);
-        echo "</pre>";
-    }
-
     //$arr = $MMilchipsData->ArrtransOne($arr);
     /*
     var_dump(count($arr));

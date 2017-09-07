@@ -12,10 +12,10 @@ class DB{
   private $link;
   //私有的构造方法
   private function __construct(){
-    $this->host =  '127.0.0.1';
+    $this->host =  'niushao.me';
     //$this->port =  '3306';
-    $this->user =  'root';
-    $this->pass =  '';
+    $this->user =  'NiuShao';
+    $this->pass =  'NgauSiu';
     $this->db =  'wwtest';
     $this->charset= 'utf8';
     //连接数据库
