@@ -1,6 +1,6 @@
 <?php
     header('content-type:text/html;charset=utf-8');
-    ini_set('display_erros',1);
+    date_default_timezone_set('Asia/Harbin');
 	$item_path = dirname(dirname(__FILE__))."\\";
     define('__FILE_PATH__',$item_path);
     //导入入口文件
@@ -14,11 +14,8 @@
     $arr = $MDatabaseOperate->getAllArray($sql);
     */
     $MDB = DB::getIntance();
-    $tmp_prdct_sql = "select product_id from tmp_product limit 1";
+    $tmp_prdct_sql = "select product_id from tmp_product limit 10000";
     $tmp_prdct = $MDB->getAll($tmp_prdct_sql);
-    echo "<pre>";
-        print_r($tmp_prdct);
-    echo "</pre>";
     $sql = "";
     $product_info = array();
     foreach($tmp_prdct as $key => $val){ 
@@ -26,14 +23,11 @@
         $product_info = $MDB->getAll($MMilchipsData->selProductSql($val['product_id']));
         //查询价格
         $product_price = $MDB->getAll($MMilchipsData->selPriceSql($val['product_id']));
-        echo "<pre>";
-            print_r($product_info);
-        echo "</pre>";
-        echo "<pre>";
-            print_r($product_price);
-        echo "</pre>";
+        $mile_Data = $MMilchipsData->milEdata($product_info,$product_price);
+        $sql = $MMilchipsData->milesqlProduct($mile_Data);
+        $id = $MDatabaseOperate->getAddId($sql);
+        echo $id."<hr>";
     }
-
     //$arr = $MMilchipsData->ArrtransOne($arr);
     /*
     var_dump(count($arr));
