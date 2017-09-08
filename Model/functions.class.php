@@ -17,6 +17,7 @@
             foreach($arr as $key => $val){ 
                 $KVbrand_arr[$val['id']] = $val['name'];
             }
+            $KVbrand_arr = array_flip($KVbrand_arr);
             return $KVbrand_arr;
         }
     }
